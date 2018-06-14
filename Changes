@@ -1,5 +1,8 @@
 {{$NEXT}}
 
+    - Version-from support
+    - Many fixes (mostly small bugs from previous version)
+
 0.0.1  2018-06-14T17:24:18Z
 
     - First release

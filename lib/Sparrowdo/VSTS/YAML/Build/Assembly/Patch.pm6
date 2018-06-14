@@ -1,6 +1,6 @@
 use v6;
 
-unit module Sparrowdo::VSTS::YAML::Build::Assembly::Patch:ver<0.0.1>;
+unit module Sparrowdo::VSTS::YAML::Build::Assembly::Patch:ver<0.0.2>;
 
 use Sparrowdo;
 use Sparrowdo::Core::DSL::Template;
@@ -33,7 +33,7 @@ our sub tasks (%args) {
   template-create "$build-dir/.cache/build.yaml.sample", %(
     source => ( slurp %?RESOURCES<build.yaml> ),
     variables => %( 
-      base-dir => "$build-dir/files",
+      base_dir => "$build-dir/files",
       version => $version
     )
   );
