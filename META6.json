@@ -1,0 +1,20 @@
+{
+  "perl"        : "6.*",
+  "name"        : "Sparrowdo::VSTS::YAML::Build::Assembly::Patch",
+  "version"     : "*",
+  "description" : "Sparrowdo module to generate VSTS yaml build definition steps for assembly info patcher",
+  "authors" : [ "Alexey Melezhik"],
+  "depends"     : [
+                    "Sparrowdo"
+                  ],
+  "source-type" : "git",
+  "support" : {
+    },
+   "provides" : {
+        "Sparrowdo::VSTS::YAML::Build::Assembly::Patch" : "lib/Sparrowdo/VSTS/YAML/Build/Assembly/Patch.pm6"
+  },
+  "resources" : [
+    "build.yaml",
+    "AssemblyInfoPatchVersion.ps1"
+  ]
+}
