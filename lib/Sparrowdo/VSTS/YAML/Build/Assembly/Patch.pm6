@@ -18,11 +18,23 @@ our sub tasks (%args) {
 
   file "$build-dir/files/AssemblyInfoPatchVersion.ps1", %( content => slurp %?RESOURCES<AssemblyInfoPatchVersion.ps1>.Str );
 
+  my $version;
+
+  if %args<version> {
+    my $v = %args<version>;
+    $version = "'\"$v.\$(Build.BuildId)\"'"
+  } elsif %args<version-from> {
+    my $v = %args<version-from>;
+    $version = "'\"\$($v).\$(Build.BuildId)\"'"
+  } else {
+    $version = "'\"0.0.1.\$(Build.BuildId)\"'"
+  }
+
   template-create "$build-dir/.cache/build.yaml.sample", %(
     source => ( slurp %?RESOURCES<build.yaml> ),
     variables => %( 
       base-dir => "$build-dir/files",
-      version => "1.0.0"
+      version => $version
     )
   );
 
