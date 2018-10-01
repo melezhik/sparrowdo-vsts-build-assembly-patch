@@ -62,11 +62,23 @@ function Update-AllAssemblyInfoFiles ( $version )
 echo "validate input parameter: ";
 echo $args[0];
 
-$r= [System.Text.RegularExpressions.Regex]::Match($args[0], "^[0-9]+(\.[0-9]+){1,3}$");
+$build_number = $args[0];
+
+$cur_day = get-date -Format dd;
+$to_remove = get-date -Format yyyyMMdd;
+$build_number = $build_number -replace "\.$to_remove\.", ".$cur_day";
+
+# 0.1.0.20181001.5
+
+echo "canonical build number: ";
+echo $build_number;
+
+$r= [System.Text.RegularExpressions.Regex]::Match($build_number, "^[0-9]+(\.[0-9]+){1,3}$");
+
 
 if ($r.Success)
 {
-  Update-AllAssemblyInfoFiles $args[0];
+  Update-AllAssemblyInfoFiles $build_number;
 }
 else
 {
@@ -74,4 +86,5 @@ else
   echo "Bad Input!"
   echo " ";
   Usage ;
+  exit 1;
 }
