@@ -34,7 +34,7 @@ function Update-SourceVersion
   Param ([string]$Revision)
 
   $NewVersion = 'AssemblyVersion("' + $Version + '")';
-  $NewFileVersion = 'AssemblyFileVersion("' + $Version + '.' + $Revision '")';
+  $NewFileVersion = 'AssemblyFileVersion("' + $Version + '.' + $Revision + '")';
 
   foreach ($o in $input) 
   {
