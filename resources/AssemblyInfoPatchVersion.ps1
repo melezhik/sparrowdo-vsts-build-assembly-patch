@@ -77,7 +77,7 @@ echo "Revision: ";
 echo "1000"
 
 $assembly_version = $args[0];
-$revision = '1000'
+$revision = $env:BUILD_BUILDID;
 
 
 $r= [System.Text.RegularExpressions.Regex]::Match("$assembly_version.$revision", "^[0-9]+(\.[0-9]+){1,3}$");
