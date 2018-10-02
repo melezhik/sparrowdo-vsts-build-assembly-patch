@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+    - Cleanup of powershell patcher script
+
 0.0.3  2018-10-02T20:50:17Z
 
     - differentiate AssemblyVersion and AssemblyFileVersion  https://stackoverflow.com/a/65062/5147708

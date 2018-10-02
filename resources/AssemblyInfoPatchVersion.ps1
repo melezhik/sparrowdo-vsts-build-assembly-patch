@@ -37,9 +37,6 @@ function Update-SourceVersion
    
   $NewFileVersion = 'AssemblyFileVersion("' + $assembly_version + '.' + $revision + '")';
   
-  echo $NewVersion;
-  echo $NewFileVersion;
-  
   foreach ($o in $input)
   {
     Write-output $o.FullName
@@ -58,9 +55,6 @@ function Update-SourceVersion
 function Update-AllAssemblyInfoFiles
 {
 
-  #echo $version ;
-  #echo $revision ;
-  
   foreach ($file in "AssemblyInfo.cs", "AssemblyInfo.vb" )
   {
     get-childitem -recurse |? {$_.Name -eq $file} | Update-SourceVersion;
@@ -74,7 +68,7 @@ echo "AssemblyVersion: ";
 echo $args[0];
 
 echo "Revision: ";
-echo "1000"
+echo $env:BUILD_BUILDID;
 
 $assembly_version = $args[0];
 $revision = $env:BUILD_BUILDID;
