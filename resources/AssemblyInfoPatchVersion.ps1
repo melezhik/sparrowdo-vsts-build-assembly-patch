@@ -29,9 +29,12 @@ function Usage
 
 function Update-SourceVersion
 {
+
   Param ([string]$Version)
+  Param ([string]$Revision)
+
   $NewVersion = 'AssemblyVersion("' + $Version + '")';
-  $NewFileVersion = 'AssemblyFileVersion("' + $Version + '")';
+  $NewFileVersion = 'AssemblyFileVersion("' + $Version + '.' + $Revision '")';
 
   foreach ($o in $input) 
   {
@@ -59,26 +62,21 @@ function Update-AllAssemblyInfoFiles ( $version )
 
 # validate arguments 
 
-echo "validate input parameter: ";
+echo "AssemblyVersion: ";
 echo $args[0];
 
-$build_number = $args[0];
+echo "Revision: ";
+echo $args[1];
 
-$cur_day = get-date -Format dd;
-$to_remove = get-date -Format yyyyMMdd;
-$build_number = $build_number -replace "\.$to_remove\.", ".$cur_day";
+$assembly_version = $args[0];
+$revision = $args[1];
 
-# 0.1.0.20181001.5
 
-echo "canonical build number: ";
-echo $build_number;
-
-$r= [System.Text.RegularExpressions.Regex]::Match($build_number, "^[0-9]+(\.[0-9]+){1,3}$");
-
+$r= [System.Text.RegularExpressions.Regex]::Match("$assembly_version.$revision", "^[0-9]+(\.[0-9]+){1,3}$");
 
 if ($r.Success)
 {
-  Update-AllAssemblyInfoFiles $build_number;
+  Update-AllAssemblyInfoFiles $assembly_version, $revision;
 }
 else
 {

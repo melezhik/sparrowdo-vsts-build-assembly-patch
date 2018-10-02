@@ -1,5 +1,7 @@
 {{$NEXT}}
 
+    - differentiate AssemblyVersion and AssemblyFileVersion  https://stackoverflow.com/a/65062/5147708
+
 0.0.2  2018-06-14T19:27:08Z
 
     - Version-from support
