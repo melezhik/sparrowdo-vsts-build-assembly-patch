@@ -2,4 +2,4 @@
   displayName: Patch Assembly Info Files
   inputs:
     scriptName: [% base_dir %]/AssemblyInfoPatchVersion.ps1
-    arguments: [% assembly_version %] "\$(Build.BuildId)"
+    arguments: [% assembly_version %]

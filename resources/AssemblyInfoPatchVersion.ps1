@@ -30,7 +30,7 @@ function Usage
 function Update-SourceVersion
 {
 
-  Param ([string]$Version)
+  Param ([string]$Version),
   Param ([string]$Revision)
 
   $NewVersion = 'AssemblyVersion("' + $Version + '")';
@@ -66,17 +66,17 @@ echo "AssemblyVersion: ";
 echo $args[0];
 
 echo "Revision: ";
-echo $args[1];
+echo $env:BUILD_BUILDID;
 
 $assembly_version = $args[0];
-$revision = $args[1];
+$revision = $env:BUILD_BUILDID
 
 
 $r= [System.Text.RegularExpressions.Regex]::Match("$assembly_version.$revision", "^[0-9]+(\.[0-9]+){1,3}$");
 
 if ($r.Success)
 {
-  Update-AllAssemblyInfoFiles $assembly_version, $revision;
+  Update-AllAssemblyInfoFiles($assembly_version, $revision);
 }
 else
 {
