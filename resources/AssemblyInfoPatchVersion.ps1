@@ -30,8 +30,10 @@ function Usage
 function Update-SourceVersion
 {
 
-  Param ([string]$Version),
-  Param ([string]$Revision)
+  Param (
+    [string]$Version,
+    [string]$Revision
+  )
 
   $NewVersion = 'AssemblyVersion("' + $Version + '")';
   $NewFileVersion = 'AssemblyFileVersion("' + $Version + '.' + $Revision + '")';
