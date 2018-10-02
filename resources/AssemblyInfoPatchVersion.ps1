@@ -53,11 +53,11 @@ function Update-SourceVersion
 }
 
 
-function Update-AllAssemblyInfoFiles ( $version )
+function Update-AllAssemblyInfoFiles ( $version, $revision )
 {
   foreach ($file in "AssemblyInfo.cs", "AssemblyInfo.vb" ) 
   {
-    get-childitem -recurse |? {$_.Name -eq $file} | Update-SourceVersion $version ;
+    get-childitem -recurse |? {$_.Name -eq $file} | Update-SourceVersion $version, $revision ;
   }
 }
 
