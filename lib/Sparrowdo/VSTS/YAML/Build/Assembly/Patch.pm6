@@ -22,19 +22,19 @@ our sub tasks (%args) {
 
   if %args<version> {
     my $v = %args<version>;
-    $version = "'\"$v.\$(Build.BuildNumber)\"'"
+    $version = "'\"$v\"'"
   } elsif %args<version-from> {
     my $v = %args<version-from>;
-    $version = "'\"\$($v).\$(Build.BuildNumber)\"'"
+    $version = "'\"\$($v)\"'"
   } else {
-    $version = "'\"0.0.1.\$(Build.BuildNumber)\"'"
+    $version = "'\"0.0.1\"'"
   }
 
   template-create "$build-dir/.cache/build.yaml.sample", %(
     source => ( slurp %?RESOURCES<build.yaml> ),
     variables => %( 
       base_dir => "$build-dir/files",
-      version => $version
+      assembly_version => $version,
     )
   );
 
