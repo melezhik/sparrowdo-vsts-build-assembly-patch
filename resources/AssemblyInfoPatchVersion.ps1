@@ -33,7 +33,7 @@ function Update-SourceVersion
 
 
 
-  $NewVersion = "AssemblyVersion(" + $assembly_version  + '")';
+  $NewVersion = 'AssemblyVersion("' + $assembly_version  + '")';
    
   $NewFileVersion = 'AssemblyFileVersion("' + $assembly_version + '.' + $revision + '")';
   
