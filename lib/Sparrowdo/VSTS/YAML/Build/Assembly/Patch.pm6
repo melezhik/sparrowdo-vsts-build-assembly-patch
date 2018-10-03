@@ -1,6 +1,6 @@
 use v6;
 
-unit module Sparrowdo::VSTS::YAML::Build::Assembly::Patch:ver<0.0.4>;
+unit module Sparrowdo::VSTS::YAML::Build::Assembly::Patch:ver<1.0.0>;
 
 use Sparrowdo;
 use Sparrowdo::Core::DSL::Template;
@@ -16,25 +16,12 @@ our sub tasks (%args) {
   directory "$build-dir/.cache";
   directory "$build-dir/files";
 
-  file "$build-dir/files/AssemblyInfoPatchVersion.ps1", %( content => slurp %?RESOURCES<AssemblyInfoPatchVersion.ps1>.Str );
-
-  my $version;
-
-  if %args<version> {
-    my $v = %args<version>;
-    $version = "'\"$v\"'"
-  } elsif %args<version-from> {
-    my $v = %args<version-from>;
-    $version = "'\"\$($v)\"'"
-  } else {
-    $version = "'\"0.0.1\"'"
-  }
+  file "$build-dir/files/AssemblyInfoPatchVersion.pl", %( content => slurp %?RESOURCES<AssemblyInfoPatchVersion.pl>.Str );
 
   template-create "$build-dir/.cache/build.yaml.sample", %(
     source => ( slurp %?RESOURCES<build.yaml> ),
     variables => %( 
-      base_dir => "$build-dir/files",
-      assembly_version => $version,
+      base_dir => "$build-dir/files"
     )
   );
 

@@ -6,7 +6,7 @@
   "depends" : [
     "Sparrowdo"
   ],
-  "description" : "Sparrowdo module to generate VSTS yaml build definition steps for assembly info patcher",
+  "description" : "Sparrowdo module to generate VSTS yaml build definition steps to patch revision part of AssemblyFileVersion",
   "license" : "NOASSERTION",
   "name" : "Sparrowdo::VSTS::YAML::Build::Assembly::Patch",
   "perl" : "6.*",
@@ -15,7 +15,7 @@
   },
   "resources" : [
     "build.yaml",
-    "AssemblyInfoPatchVersion.ps1"
+    "AssemblyInfoPatchVersion.pl"
   ],
   "source-type" : "git",
   "source-url" : "https://github.com/melezhik/sparrowdo-vsts-build-assembly-patch.git",
@@ -23,5 +23,6 @@
   },
   "tags" : [ ],
   "test-depends" : [ ],
+
   "version" : "0.0.4"
 }

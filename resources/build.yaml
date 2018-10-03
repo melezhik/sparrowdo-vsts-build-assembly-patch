@@ -1,5 +1,7 @@
-- task: PowerShell@1
-  displayName: Patch Assembly Info Files
+- task: CmdLine@1
+  displayName: Patch AssemblyFileVersion
   inputs:
-    scriptName: [% base_dir %]/AssemblyInfoPatchVersion.ps1
-    arguments: [% assembly_version %]
+    filename: perl
+    arguments: [% base_dir %]/AssemblyInfoPatchVersion.pl "\$(Build.BuildId)"
+    workingDirectory: "\$(Build.SourcesDirectory)"
+
