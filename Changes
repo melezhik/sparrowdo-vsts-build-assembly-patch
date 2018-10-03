@@ -1,7 +1,9 @@
 {{$NEXT}}
-    
-    - Only changing revision, not version
 
+1.0.0  2018-10-03T22:33:38Z
+
+    - Drop "whole" version support, only update revision part
+    
 0.0.4  2018-10-02T21:01:41Z
 
     - Cleanup of powershell patcher script
