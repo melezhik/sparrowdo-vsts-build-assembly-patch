@@ -15,9 +15,18 @@ sub wanted {
   # AssemblyFileVersion("2.5.0.0")
 
   if ($f=~/\.cs$/){
-    print "patch  ", $f , " ...\n";
-    my $cmd = 'perl -i -p -e "BEGIN { \$r = qq{'.$r.'} }; s{(AssemblyFileVersion.*\d+\.\d+\.\d+\.)(\d+)}[\$1\$r]g" '.$f;
-    print "run cmd: $cmd\n";
-    system( $cmd ) == 0 or die "cannot patch $f, error executing cmd $cmd: $!";
+
+    open(my $fh, "<:encoding(UTF-8)", $f) || die "Can't open UTF-8 encoded $f to read: $!";
+
+    my $c = join "", <$fh>;
+    close $fh;
+
+    if ($c=~s/(AssemblyFileVersion.*\d+\.\d+\.\d+\.)(\d+)/$1$r/){
+      print "patch  ", $f , " rev: $r ...\n";
+      open($fh, ">:encoding(UTF-8)", $f) || die "Can't open UTF-8 encoded $f to write: $!";
+      print $fh $c;
+      close $fh;
+    }
+
   }
 }
