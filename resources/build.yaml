@@ -2,6 +2,6 @@
   displayName: Patch AssemblyFileVersion
   inputs:
     filename: perl
-    arguments: [% base_dir %]/AssemblyInfoPatchVersion.pl "\$(Build.BuildId)"
+    arguments: [% base_dir %]/AssemblyInfoPatchVersion.pl "\$(Build.SourcesDirectory)" "\$(Build.BuildId)"
     workingDirectory: "\$(Build.SourcesDirectory)"
 
