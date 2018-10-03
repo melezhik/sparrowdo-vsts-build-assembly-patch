@@ -16,14 +16,14 @@ sub wanted {
 
   if ($f=~/\.cs$/){
 
-    open(my $fh, "<:encoding(UTF-8)", $f) || die "Can't open UTF-8 encoded $f to read: $!";
+    open(my $fh, "<", $f) || die "Can't open UTF-8 encoded $f to read: $!";
 
     my $c = join "", <$fh>;
     close $fh;
 
     if ($c=~s/(AssemblyFileVersion.*\d+\.\d+\.\d+\.)(\d+)/$1$r/){
       print "patch  ", $f , " rev: $r ...\n";
-      open($fh, ">:encoding(UTF-8)", $f) || die "Can't open UTF-8 encoded $f to write: $!";
+      open($fh, ">", $f) || die "Can't open UTF-8 encoded $f to write: $!";
       print $fh $c;
       close $fh;
     }
